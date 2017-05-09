@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-CAPSTONE PROJECT: ALL STATE CLAIMS SEVERITY
+PROJECT: ALL STATE CLAIMS SEVERITY
 KAGGLE COMPETITION: https://www.kaggle.com/c/allstate-claims-severity
 """
 
 """
 ----------------------------------------------------------------------------------------------------
-Step 1: Understand Data
+Understand Data
 """
 print ("Importing libraries ...")
 import pandas as pd
@@ -54,17 +54,17 @@ ax.set_yticklabels(colnames)
 pyplot.show()
 """
 ----------------------------------------------------------------------------------------------------
-STEP 2: PROCESS DATA
+PROCESS DATA
 PROCESS NUMERIC FEATURES:
-    1. Identify the high correlated features: between cont1-cont9, cont1-cont10, cont6-cont10, cont6-cont13, cont11-cont12
-    2. Then remove features cont9, cont10, cont11 and cont13 from data set
-    3. Examine skewness of the features and transform them if needed: Sknewness is small for continous features except the response "loss"
+    - Identify the high correlated features: between cont1-cont9, cont1-cont10, cont6-cont10, cont6-cont13, cont11-cont12
+    - Then remove features cont9, cont10, cont11 and cont13 from data set
+    - Examine skewness of the features and transform them if needed: Sknewness is small for continous features except the response "loss"
         Skewness of "loss" is ...., therefore the response needs to be transformed, using logarithm function
 PROCESS CATEGORICAL FEATURES:
-    1. Remove unbalanced two-value categorical features: the chance of one value is higher than 99%
-    2. For categorical feature with the high number of levels, group the levels with the occurence chance between 0 and 1% into a new level of 'rare'
-    3. Check inconsistency in levels from categorical features in the training and testing sets.
-    4. Transform categorical features into dummy features using get_dummies() function
+    - Remove unbalanced two-value categorical features: the chance of one value is higher than 99%
+    - For categorical feature with the high number of levels, group the levels with the occurence chance between 0 and 1% into a new level of 'rare'
+    - Check inconsistency in levels from categorical features in the training and testing sets.
+    - Transform categorical features into dummy features using get_dummies() function
 """
 # PROCESS NUMERIC FEATURES
 # Remove high correlated features: cont9, cont10, cont11 and cont13 from the training set and testing set
@@ -161,10 +161,10 @@ new_x_test = np.concatenate((transformed_cat.iloc[len(x_train) : len(transformed
 
 """
 ----------------------------------------------------------------------------------------------------
-STEP 3: MODEL SELECTION AND TRAINING
-1. Apply linear and non-linear single models to get the baseline errors
-2. Apply ensemble models: random forests and extreme gradient boosting regressor (XGBoost) and compare results from two ensemble models
-3. Tune the better ensemble model: XGBoost model
+MODEL SELECTION AND TRAINING
+- Apply linear and non-linear single models to get the baseline errors
+- Apply ensemble models: random forests and extreme gradient boosting regressor (XGBoost) and compare results from two ensemble models
+- Tune the better ensemble model: XGBoost model
 """
 # SINGLE MODELS: LINEAR REGRESSION, RIDGE REGRESSION, LASSO REGRESSION
 #                KNN, DECISION TREE AND SUPPORT VECTOR MACHINE
