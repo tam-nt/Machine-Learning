@@ -30,7 +30,7 @@ This project contains five files and one folder:
 -	`simulation.py`: This Python file creates the simulation and graphical user interface.
 -	`visual.py`: This Python file provides supplementary visualization for the analysis.
 -	`/images/`: This folder contains various images of cars to be used in the graphical user interface.
--	 
+
 ### Running the Code
 In a terminal or command window, run one of the following commands:
 
