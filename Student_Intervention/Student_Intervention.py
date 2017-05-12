@@ -1,3 +1,4 @@
+
 # Import libraries
 import numpy as np
 import pandas as pd
@@ -11,19 +12,19 @@ print "Student data read successfully!"
 
 #--------------------------------------
 # Data Exploration
-# TODO: Calculate number of students
+# Calculate number of students
 n_students = len(student_data)
 
-# TODO: Calculate number of features
+# Calculate number of features
 n_features = len(student_data.columns.difference(["passed"]))
 
-# TODO: Calculate passing students
+# Calculate passing students
 n_passed = len(student_data[student_data['passed'] == 'yes'])
 
-# TODO: Calculate failing students
+# Calculate failing students
 n_failed = len(student_data[student_data["passed"] == "no"])
 
-# TODO: Calculate graduation rate
+# Calculate graduation rate
 grad_rate = (float(n_passed)/n_students)*100.
 
 # Print the results
@@ -87,13 +88,13 @@ print "Processed feature columns ({} total features):\n{}".format(len(X_all.colu
 # Training and Testing Data Split
 from sklearn import cross_validation
 
-# TODO: Set the number of training points
+# Set the number of training points
 num_train = 300
 
 # Set the number of testing points
 num_test = X_all.shape[0] - num_train
 
-# TODO: Shuffle and split the dataset into the number of training and testing points above
+# Shuffle and split the dataset into the number of training and testing points above
 X_train, X_test, y_train, y_test = cross_validation.train_test_split(X_all, y_all, test_size= float(num_test)/n_students, random_state=1)
 
 # Show the results of the split
@@ -145,19 +146,19 @@ def train_predict(clf, X_train, y_train, X_test, y_test):
     I train and predict each classifier for three different training set sizes: 100, 200 and 300
     so the number of expected outputs is 9. '''
 
-# TODO: Import the three supervised learning models from sklearn
+# Import the three supervised learning models from sklearn
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import GaussianNB
 import random
 from time import time
 from sklearn.ensemble import RandomForestClassifier
 
-# TODO: Initialize the three models
+# Initialize the three models
 clf_A = LogisticRegression( random_state = 1)
 clf_B = GaussianNB()
 clf_C = RandomForestClassifier(random_state=1)
 
-# TODO: Set up the training set sizes
+# Set up the training set sizes
 for clf in [clf_A, clf_B, clf_C]:
     print "\n{}: \n".format(clf.__class__.__name__)
     for n in [100, 200, 300]:
@@ -168,26 +169,26 @@ for clf in [clf_A, clf_B, clf_C]:
 #   So the logistic regression is selected for tuning further.
 #--------------------------------------
 # Model Tuning
-# TODO: Import 'GridSearchCV' and 'make_scorer'
+# Import 'GridSearchCV' and 'make_scorer'
 import math
 from sklearn import grid_search
 from sklearn.metrics import make_scorer, f1_score
-# TODO: Create the parameters list you wish to tune
+# Create the parameters list you wish to tune
 parameters = {'C': [0.001, 0.01, 0.1, 1, 10, 100, 1000]}
 
-# TODO: Initialize the classifier
+# Initialize the classifier
 clf = LogisticRegression(random_state=1)
 
-# TODO: Make an f1 scoring function using 'make_scorer'
+# Make an f1 scoring function using 'make_scorer'
 f1_scorer = make_scorer(f1_score, pos_label = 'yes')
 
-# TODO: Perform grid search on the classifier using the f1_scorer as the scoring method
+# Perform grid search on the classifier using the f1_scorer as the scoring method
 grid_obj = grid_search.GridSearchCV(clf, param_grid = parameters, scoring = f1_scorer)
 
-# TODO: Fit the grid search object to the training data and find the optimal parameters
+# Fit the grid search object to the training data and find the optimal parameters
 grid_obj.fit(X_train, y_train)
 
-# TODO: Get the estimator
+# Get the estimator
 clf = grid_obj.best_estimator_
 print clf
 
